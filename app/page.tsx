@@ -11,6 +11,8 @@ import { Faq } from '@/components/hackumass/faq'
 import { GameplayFootage } from '@/components/hackumass/gameplay-footage'
 import { Team } from '@/components/hackumass/team'
 import { Footer } from '@/components/hackumass/footer'
+import { LobsterNarrator } from '@/components/hackumass/lobster-narrator'
+import { ArcadeFx } from '@/components/hackumass/arcade-fx'
 
 export default function Page() {
   return (
@@ -28,6 +30,8 @@ export default function Page() {
       <GameplayFootage />
       <Team />
       <Footer />
+      <LobsterNarrator />
+      <ArcadeFx />
     </main>
   )
 }
