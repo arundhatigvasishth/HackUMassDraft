@@ -45,11 +45,11 @@ const COLORS = rotateColors(0)
 
 export function BonusStages() {
   return (
-    <section className="relative overflow-hidden py-20">
+    <section data-stage="bonus" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD WORKSHOPS_EVENTS.DAT" />
-        <h2 className="mb-10 font-pixel text-2xl text-foreground text-glow sm:text-3xl">
+        <h2 className="mb-10 font-pixel text-2xl leading-snug arcade-title sm:text-3xl">
           BONUS STAGES
         </h2>
 
@@ -59,8 +59,8 @@ export function BonusStages() {
             return (
               <article
                 key={m.no}
-                className="red-glow flex flex-col gap-3 border-2 border-border p-6 hover:border-primary"
-                style={{ backgroundColor: cardTint(color) }}
+                className="arcade-hover flex flex-col gap-3 border-2 border-border p-6 hover:border-primary"
+                style={{ backgroundColor: cardTint(color), '--glow': color } as React.CSSProperties}
               >
                 <span className="font-pixel text-3xl text-glow" style={{ color }}>
                   {m.no}
@@ -74,7 +74,7 @@ export function BonusStages() {
                 </p>
                 <button
                   type="button"
-                  className="red-glow mt-2 self-start border-2 border-primary bg-transparent px-5 py-2 font-pixel text-[9px] text-foreground hover:bg-primary hover:text-primary-foreground"
+                  className="arcade-btn arcade-btn-cyan mt-3 self-start px-5 py-3 text-[9px]"
                 >
                   ENTER STAGE
                 </button>

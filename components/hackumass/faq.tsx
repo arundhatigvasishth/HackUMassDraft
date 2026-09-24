@@ -43,11 +43,11 @@ export function Faq() {
   const items = TABS[tab].items
 
   return (
-    <section id="faq" className="relative overflow-hidden py-20">
+    <section id="faq" data-stage="faq" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD FAQ.DAT" />
-        <h2 className="mb-10 font-pixel text-2xl text-foreground text-glow sm:text-3xl">
+        <h2 className="mb-10 font-pixel text-2xl leading-snug arcade-title sm:text-3xl">
           HELP SCREEN
         </h2>
 
@@ -63,7 +63,7 @@ export function Faq() {
                   setTab(i)
                   setOpen(0)
                 }}
-                className="red-glow border-2 px-4 py-3 font-pixel text-[9px] text-foreground"
+                className="arcade-hover border-2 px-4 py-3 font-pixel text-[9px] text-foreground"
                 style={
                   active
                     ? { borderColor: color, backgroundColor: color, color: 'var(--background)' }
@@ -84,7 +84,7 @@ export function Faq() {
               <div
                 key={item.q}
                 className="border-2 border-border"
-                style={{ backgroundColor: cardTint(color) }}
+                style={{ backgroundColor: cardTint(color), '--glow': color } as React.CSSProperties}
               >
                 <button
                   type="button"

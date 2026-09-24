@@ -15,6 +15,6 @@ export function rotateColors(n: number) {
 // colors stay vivid regardless of what the brand's background/card
 // tokens currently are — blending saturated color into a colored
 // surface (e.g. red) muddies it; blending into near-black doesn't.
-export function cardTint(color: string, pct = 32) {
-  return `color-mix(in srgb, ${color} ${pct}%, #141414)`
+export function cardTint(color: string, pct = 20) {
+  return `color-mix(in srgb, ${color} ${pct}%, #0e0626)`
 }

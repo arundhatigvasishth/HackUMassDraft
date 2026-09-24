@@ -28,6 +28,7 @@
   --color-arcade-magenta: var(--arcade-magenta);
   --color-arcade-yellow: var(--arcade-yellow);
   --color-arcade-orange: var(--arcade-orange);
+  --color-arcade-purple: var(--arcade-purple);
 
   --font-sans: var(--font-vt323);
   --font-heading: var(--font-press-start);
@@ -41,29 +42,31 @@
 
 :root {
   color-scheme: dark;
-  --background: #bd0000;
-  --foreground: #f0f0f0;
-  --card: #4a0000;
-  --card-foreground: #f0f0f0;
-  --popover: #4a0000;
-  --popover-foreground: #f0f0f0;
-  --primary: #0a0a0a;
-  --primary-foreground: #f0f0f0;
-  --secondary: #3a3a3a;
-  --secondary-foreground: #f0f0f0;
-  --muted: #6b1010;
-  --muted-foreground: #f5d9d9;
-  --accent: #3a3a3a;
-  --accent-foreground: #f0f0f0;
-  --destructive: #0a0a0a;
-  --border: #1a1a1a;
-  --input: #6b1010;
-  --ring: #0a0a0a;
-  --terminal: #00ff41;
+  /* Arcade palette: deep-space cabinet interior + neon tubes */
+  --background: #0a0420;
+  --foreground: #f4f0ff;
+  --card: #140a33;
+  --card-foreground: #f4f0ff;
+  --popover: #140a33;
+  --popover-foreground: #f4f0ff;
+  --primary: #ff2d55;
+  --primary-foreground: #ffffff;
+  --secondary: #ffd400;
+  --secondary-foreground: #0a0420;
+  --muted: #1d1045;
+  --muted-foreground: #a99bd6;
+  --accent: #00e5ff;
+  --accent-foreground: #0a0420;
+  --destructive: #ff2d55;
+  --border: #3a2477;
+  --input: #1d1045;
+  --ring: #00e5ff;
+  --terminal: #39ff14;
   --arcade-cyan: #00e5ff;
-  --arcade-magenta: #ff00c8;
+  --arcade-magenta: #ff2bd6;
   --arcade-yellow: #ffd400;
-  --arcade-orange: #ff8c00;
+  --arcade-orange: #ff8a00;
+  --arcade-purple: #8a2bff;
   --radius: 0px;
 }
 
@@ -76,39 +79,34 @@
     font-size: 22px;
     line-height: 1.4;
     background-image:
-      radial-gradient(circle at 12% 18%, rgba(0, 229, 255, 0.5), transparent 42%),
-      radial-gradient(circle at 88% 12%, rgba(255, 0, 200, 0.48), transparent 42%),
-      radial-gradient(circle at 15% 85%, rgba(255, 212, 0, 0.45), transparent 42%),
-      radial-gradient(circle at 85% 88%, rgba(255, 140, 0, 0.48), transparent 42%),
-      radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.38), transparent 48%),
-      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
-      linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
-      linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+      radial-gradient(ellipse at 50% -10%, rgba(138, 43, 255, 0.35), transparent 60%),
+      radial-gradient(ellipse at 50% 110%, rgba(255, 43, 214, 0.22), transparent 55%),
+      linear-gradient(rgba(58, 36, 119, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(58, 36, 119, 0.18) 1px, transparent 1px);
     background-size:
       100% 100%,
       100% 100%,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      100% 100%,
-      32px 32px,
-      32px 32px,
       32px 32px,
       32px 32px;
-    background-position:
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 16px,
-      16px -16px,
-      -16px 0px;
-    background-attachment: fixed, fixed, fixed, fixed, fixed, fixed, scroll, scroll, scroll, scroll;
+    background-attachment: fixed, fixed, scroll, scroll;
+  }
+  /* Twinkling pixel starfield behind everything */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+      radial-gradient(2px 2px at 140px 80px, #00e5ff, transparent),
+      radial-gradient(2px 2px at 60px 160px, #ffd400, transparent),
+      radial-gradient(2px 2px at 200px 200px, #fff, transparent),
+      radial-gradient(2px 2px at 250px 40px, #ff2bd6, transparent),
+      radial-gradient(1px 1px at 90px 240px, #fff, transparent),
+      radial-gradient(1px 1px at 180px 130px, #fff, transparent);
+    background-size: 280px 280px;
+    animation: twinkle 3s steps(3) infinite;
   }
   h1,
   h2,
@@ -119,7 +117,7 @@
     @apply font-heading;
   }
   ::selection {
-    background: var(--primary);
+    background: var(--arcade-magenta);
     color: var(--foreground);
   }
 }
@@ -129,19 +127,22 @@
     font-family: var(--font-press-start);
   }
 
-  /* Global CRT scanline overlay */
+  /* Global CRT overlay: scanlines + tube vignette */
   .crt-overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0px,
-      rgba(0, 0, 0, 0) 2px,
-      rgba(0, 0, 0, 0.16) 3px,
-      rgba(0, 0, 0, 0.16) 4px
-    );
+    background:
+      radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.45) 100%),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0px,
+        rgba(0, 0, 0, 0) 2px,
+        rgba(0, 0, 0, 0.14) 3px,
+        rgba(0, 0, 0, 0.14) 4px
+      );
+    animation: flicker 6s infinite;
   }
 
   /* Inner scanlines for framed screens / photos */
@@ -162,19 +163,297 @@
     );
   }
 
-  .red-glow {
-    transition: all 0.1s;
+  /* Chunky pixel card: hard drop shadow that lifts + glows on hover,
+     squashes on press. Set --glow inline to tint the hover glow. */
+  .arcade-hover {
+    box-shadow: 4px 4px 0 #000;
+    transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition:
+      transform 0.15s ease-out,
+      box-shadow 0.1s ease,
+      border-color 0.1s ease;
   }
-  .red-glow:hover {
-    box-shadow: 0 0 12px 2px rgba(189, 0, 0, 0.9);
+  /* cards that carry their own color get a dim neon tube border */
+  .arcade-hover[style*='--glow'] {
+    border-color: color-mix(in srgb, var(--glow) 55%, transparent);
+  }
+  .arcade-hover:hover {
+    transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))
+      translate3d(-2px, -2px, 12px);
+    border-color: var(--glow, var(--primary));
+    box-shadow:
+      6px 6px 0 #000,
+      0 0 18px color-mix(in srgb, var(--glow, var(--primary)) 70%, transparent);
+  }
+  .arcade-hover:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 #000;
   }
 
+  /* 3D arcade push-button */
+  .arcade-btn {
+    display: inline-block;
+    border: 3px solid #000;
+    background: var(--btn, var(--primary));
+    color: var(--btn-fg, var(--primary-foreground));
+    font-family: var(--font-press-start);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+    box-shadow:
+      inset -4px -4px 0 rgba(0, 0, 0, 0.3),
+      inset 4px 4px 0 rgba(255, 255, 255, 0.35),
+      0 6px 0 #000,
+      0 0 24px color-mix(in srgb, var(--btn, var(--primary)) 60%, transparent);
+  }
+  .arcade-btn:hover {
+    filter: brightness(1.15);
+  }
+  .arcade-btn:active {
+    transform: translateY(6px);
+    box-shadow:
+      inset -4px -4px 0 rgba(0, 0, 0, 0.3),
+      inset 4px 4px 0 rgba(255, 255, 255, 0.35);
+  }
+  .arcade-btn-yellow {
+    --btn: var(--arcade-yellow);
+    --btn-fg: #1a0a00;
+    text-shadow: none;
+  }
+  .arcade-btn-cyan {
+    --btn: var(--arcade-cyan);
+    --btn-fg: #001a20;
+    text-shadow: none;
+  }
+
+  /* 80s arcade logo lettering: yellow face with stacked hard shadows */
+  .arcade-title {
+    color: var(--arcade-yellow);
+    text-shadow:
+      3px 3px 0 var(--primary),
+      6px 6px 0 var(--arcade-purple),
+      0 0 24px rgba(255, 212, 0, 0.35);
+  }
+
+  /* Neon tube glow in whatever the current text color is */
   .text-glow {
-    text-shadow: 0 0 8px rgba(189, 0, 0, 0.8);
+    text-shadow:
+      0 0 4px color-mix(in srgb, currentColor 90%, transparent),
+      0 0 12px color-mix(in srgb, currentColor 60%, transparent);
   }
   .text-glow-green {
-    text-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+    text-shadow:
+      0 0 4px rgba(57, 255, 20, 0.9),
+      0 0 12px rgba(57, 255, 20, 0.5);
   }
+
+  .neon-box {
+    border-color: var(--glow, var(--primary));
+    box-shadow:
+      0 0 10px color-mix(in srgb, var(--glow, var(--primary)) 70%, transparent),
+      inset 0 0 10px color-mix(in srgb, var(--glow, var(--primary)) 40%, transparent);
+  }
+
+  /* Rainbow pixel stripe (navbar / footer edges) */
+  .rainbow-stripe {
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--primary) 0 16.66%,
+      var(--arcade-orange) 0 33.33%,
+      var(--arcade-yellow) 0 50%,
+      var(--terminal) 0 66.66%,
+      var(--arcade-cyan) 0 83.33%,
+      var(--arcade-magenta) 0 100%
+    );
+  }
+
+  /* Hazard tape edges for the ticker */
+  .hazard-edge {
+    height: 8px;
+    background: repeating-linear-gradient(-45deg, #000 0 10px, var(--arcade-yellow) 10px 20px);
+  }
+
+  /* Chasing marquee bulbs around the hero cabinet */
+  .marquee-bulbs {
+    background-image:
+      radial-gradient(circle at 7px 7px, var(--arcade-yellow) 3px, transparent 4px),
+      radial-gradient(circle at 21px 21px, var(--primary) 3px, transparent 4px);
+    background-size: 28px 28px;
+    animation: bulbs 0.6s steps(1) infinite;
+  }
+  @keyframes bulbs {
+    50% {
+      background-position: 14px 14px;
+    }
+  }
+
+  /* Synthwave perspective grid floor */
+  .synth-grid {
+    background-image:
+      linear-gradient(var(--primary) 2px, transparent 2px),
+      linear-gradient(90deg, var(--primary) 2px, transparent 2px);
+    background-size: 60px 60px;
+    transform: perspective(300px) rotateX(60deg);
+    transform-origin: top center;
+    animation: grid-scroll 1.2s linear infinite;
+    mask-image: linear-gradient(to bottom, transparent, #000 25%);
+  }
+  @keyframes grid-scroll {
+    to {
+      background-position: 0 60px;
+    }
+  }
+
+  /* Big striped red sun on the hero horizon (only its top half shows) */
+  .red-sun {
+    background: linear-gradient(
+      to bottom,
+      #ffd24a 0%,
+      #ff7a3d 18%,
+      var(--primary) 34%,
+      #c0003c 50%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0 26%,
+      transparent 26% 27.2%,
+      #000 27.2% 32%,
+      transparent 32% 33.8%,
+      #000 33.8% 38.5%,
+      transparent 38.5% 41%,
+      #000 41% 44.5%,
+      transparent 44.5% 47.5%,
+      #000 47.5%
+    );
+    opacity: 0.9;
+    animation: sun-pulse 5s ease-in-out infinite;
+  }
+  @keyframes sun-pulse {
+    50% {
+      opacity: 0.75;
+      filter: saturate(1.3);
+    }
+  }
+
+  /* Hero cabinet as a 3D object: tilts with the mouse, marquee and control
+     deck float forward, and a back panel gives the box real depth. */
+  .cabinet-3d {
+    transform-style: preserve-3d;
+    transform: perspective(1400px) rotateX(calc(var(--ty, 0) * -10deg))
+      rotateY(calc(var(--tx, 0) * 16deg));
+    transition: transform 0.25s ease-out;
+  }
+  .cabinet-3d::before {
+    content: '';
+    position: absolute;
+    inset: 0 2%;
+    background: #12072e;
+    border: 4px solid #000;
+    transform: translateZ(-50px);
+    box-shadow: 0 0 80px rgba(255, 45, 85, 0.35);
+  }
+  .cabinet-pop {
+    transform: translateZ(36px);
+  }
+  .cabinet-deck {
+    transform: translateZ(24px);
+  }
+
+  /* Spinning 3D arcade token */
+  .coin-spin {
+    transform-style: preserve-3d;
+    animation: coin-spin 2.6s linear infinite;
+  }
+  .coin-disc {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    backface-visibility: hidden;
+  }
+  .coin-rim {
+    background: #b37f00;
+    backface-visibility: visible;
+  }
+  .coin-face {
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 35% 30%, #fff3a0, var(--arcade-yellow) 45%, #d9a400);
+    border: 3px solid #8a5a00;
+    box-shadow: inset 0 0 0 4px #ffe066;
+    font-family: var(--font-press-start);
+    font-size: 11px;
+    color: #7a3d00;
+  }
+  @keyframes coin-spin {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+  .coin-float {
+    perspective: 400px;
+    filter: drop-shadow(0 0 12px rgba(255, 212, 0, 0.55));
+    animation: coin-float 3s ease-in-out infinite;
+  }
+  .coin-float:hover {
+    filter: drop-shadow(0 0 18px rgba(255, 212, 0, 0.9));
+  }
+  @keyframes coin-float {
+    50% {
+      translate: 0 -14px;
+    }
+  }
+  .coin-collected {
+    pointer-events: none;
+    animation: coin-collect 0.5s ease-out forwards;
+  }
+  @keyframes coin-collect {
+    to {
+      translate: 0 -80px;
+      scale: 1.6;
+      opacity: 0;
+    }
+  }
+
+  /* PINCH the narrator: idle bob + squashing floor shadow */
+  .pinch-bob > div {
+    animation: pinch-bob 2.4s ease-in-out infinite;
+  }
+  .pinch-shadow {
+    animation: pinch-shadow 2.4s ease-in-out infinite;
+  }
+  @keyframes pinch-bob {
+    50% {
+      translate: 0 -6px;
+    }
+  }
+  @keyframes pinch-shadow {
+    50% {
+      scale: 0.8;
+      opacity: 0.6;
+    }
+  }
+  .pinch-bubble {
+    box-shadow:
+      4px 4px 0 #000,
+      0 0 22px rgba(255, 45, 85, 0.45);
+  }
+
+  /* Section titles flip up into place when scrolled to (JS adds .fx) */
+  .fx h2.arcade-title {
+    opacity: 0;
+    transform: perspective(600px) rotateX(80deg);
+    transform-origin: 50% 100%;
+    transition:
+      transform 0.7s cubic-bezier(0.2, 1.5, 0.4, 1),
+      opacity 0.3s ease;
+  }
+  .fx h2.arcade-title.in-view {
+    opacity: 1;
+    transform: none;
+  }
+
   /* everything transitions fast per spec */
   a,
   button,
@@ -188,6 +467,24 @@
   @keyframes blink {
     50% {
       opacity: 0;
+    }
+  }
+  @keyframes twinkle {
+    33% {
+      opacity: 0.6;
+    }
+    66% {
+      opacity: 0.85;
+    }
+  }
+  @keyframes flicker {
+    0%,
+    96%,
+    100% {
+      opacity: 1;
+    }
+    97% {
+      opacity: 0.85;
     }
   }
 
@@ -214,5 +511,19 @@
   .footage-track {
     display: inline-flex;
     animation: ticker 30s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cabinet-3d,
+  .arcade-hover,
+  .arcade-hover:hover {
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

@@ -15,11 +15,11 @@ const COLORS = rotateColors(2)
 
 export function Schedule() {
   return (
-    <section id="schedule" className="relative overflow-hidden py-20">
+    <section id="schedule" data-stage="schedule" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD SCHEDULE.DAT" />
-        <h2 className="mb-12 font-pixel text-2xl text-foreground text-glow sm:text-3xl">
+        <h2 className="mb-12 font-pixel text-2xl leading-snug arcade-title sm:text-3xl">
           STAGE SELECT
         </h2>
 
@@ -29,8 +29,8 @@ export function Schedule() {
               <div key={node.title} className="flex items-stretch">
                 <div className="flex w-44 flex-col items-center text-center">
                   <div
-                    className="red-glow flex h-16 w-16 items-center justify-center border-4 border-primary font-sans text-3xl text-foreground text-glow"
-                    style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]) }}
+                    className="arcade-hover flex h-16 w-16 items-center justify-center border-4 border-primary font-sans text-3xl text-foreground text-glow"
+                    style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]), '--glow': COLORS[i % COLORS.length] } as React.CSSProperties}
                   >
                     {node.icon}
                   </div>

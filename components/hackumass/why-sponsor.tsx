@@ -33,11 +33,11 @@ function XpBar({ label, pct, color }: { label: string; pct: number; color: strin
 
 export function WhySponsor() {
   return (
-    <section className="relative overflow-hidden py-20">
+    <section data-stage="why-sponsor" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD WHY_SPONSOR_US.DAT" />
-        <h2 className="mb-10 font-pixel text-2xl text-foreground text-glow sm:text-3xl">
+        <h2 className="mb-10 font-pixel text-2xl leading-snug arcade-title sm:text-3xl">
           JOIN THE ALLIANCE
         </h2>
 
@@ -61,7 +61,7 @@ export function WhySponsor() {
             ))}
             <a
               href="#top"
-              className="red-glow mt-2 self-start border-2 border-primary bg-primary px-6 py-3 font-pixel text-[11px] text-primary-foreground hover:bg-secondary hover:text-secondary-foreground"
+              className="arcade-btn arcade-btn-yellow mt-4 self-start px-6 py-4 text-[11px]"
             >
               SPONSOR HACKUMASS
             </a>

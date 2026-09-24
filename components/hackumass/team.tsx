@@ -78,11 +78,11 @@ export function Team() {
   const [tab, setTab] = useState(0)
 
   return (
-    <section id="team" className="relative overflow-hidden py-20">
+    <section id="team" data-stage="team" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD MEET_THE_TEAM.DAT" />
-        <h2 className="mb-10 font-pixel text-2xl text-foreground text-glow sm:text-3xl">
+        <h2 className="mb-10 font-pixel text-2xl leading-snug arcade-title sm:text-3xl">
           OUR CREW
         </h2>
 
@@ -95,7 +95,7 @@ export function Team() {
                 key={t.name}
                 type="button"
                 onClick={() => setTab(i)}
-                className="red-glow border-2 px-4 py-3 font-pixel text-[9px] text-foreground"
+                className="arcade-hover border-2 px-4 py-3 font-pixel text-[9px] text-foreground"
                 style={
                   active
                     ? { borderColor: color, backgroundColor: color, color: 'var(--background)' }
@@ -114,8 +114,8 @@ export function Team() {
             return (
               <div
                 key={m.name}
-                className="red-glow flex flex-col items-center gap-3 border-2 border-border p-6 text-center"
-                style={{ backgroundColor: cardTint(color) }}
+                className="arcade-hover flex flex-col items-center gap-3 border-2 border-border p-6 text-center"
+                style={{ backgroundColor: cardTint(color), '--glow': color } as React.CSSProperties}
               >
                 <span
                   className="flex h-16 w-16 items-center justify-center rounded-full border-2 font-pixel text-[11px]"

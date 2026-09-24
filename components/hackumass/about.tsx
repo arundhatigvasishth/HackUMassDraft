@@ -21,11 +21,11 @@ const COLORS = rotateColors(0)
 
 export function About() {
   return (
-    <section id="about" className="relative overflow-hidden py-20">
+    <section id="about" data-stage="about" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD ABOUT_US.DAT" />
-        <h2 className="mb-10 font-pixel text-2xl text-foreground text-glow sm:text-3xl">
+        <h2 className="mb-10 font-pixel text-2xl leading-snug arcade-title sm:text-3xl">
           WHY HACKUMASS?
         </h2>
 
@@ -52,8 +52,8 @@ export function About() {
           {CARDS.map(({ icon: Icon, label }, i) => (
             <div
               key={label}
-              className="red-glow flex flex-col items-center gap-3 border-2 border-border p-5 text-center hover:border-primary"
-              style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]) }}
+              className="arcade-hover flex flex-col items-center gap-3 border-2 border-border p-5 text-center hover:border-primary"
+              style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]), '--glow': COLORS[i % COLORS.length] } as React.CSSProperties}
             >
               <Icon className="h-8 w-8 text-foreground" strokeWidth={1.5} aria-hidden="true" />
               <span className="font-pixel text-[9px] leading-tight text-foreground">
@@ -79,7 +79,7 @@ export function About() {
                   {s.rank}
                 </span>
                 <span className="text-foreground/80">{s.label}</span>
-                <span className="text-3xl text-foreground text-glow">{s.value}</span>
+                <span className="text-3xl text-arcade-yellow text-glow">{s.value}</span>
               </li>
             ))}
           </ul>

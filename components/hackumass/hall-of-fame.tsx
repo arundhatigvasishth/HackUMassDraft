@@ -16,11 +16,11 @@ const COLORS = rotateColors(1)
 
 export function HallOfFame() {
   return (
-    <section className="relative overflow-hidden py-20">
+    <section data-stage="hall-of-fame" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD PAST_HACKATHONS.DAT" />
-        <h2 className="mb-10 font-pixel text-2xl text-foreground text-glow sm:text-3xl">
+        <h2 className="mb-10 font-pixel text-2xl leading-snug arcade-title sm:text-3xl">
           HALL OF FAME
         </h2>
 
@@ -28,8 +28,8 @@ export function HallOfFame() {
           {EDITIONS.map((e, i) => (
             <article
               key={e.edition}
-              className="red-glow flex w-72 shrink-0 snap-start flex-col border-4 border-primary"
-              style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]) }}
+              className="arcade-hover flex w-72 shrink-0 snap-start flex-col border-4 border-primary"
+              style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]), '--glow': COLORS[i % COLORS.length] } as React.CSSProperties}
             >
               <div className="border-b-2 border-primary px-4 py-3 text-center font-pixel text-[10px] text-foreground text-glow">
                 {e.edition}
@@ -57,8 +57,8 @@ export function HallOfFame() {
             <button
               key={y}
               type="button"
-              className="red-glow border-2 border-border px-3 py-2 font-pixel text-[10px] text-foreground hover:border-primary"
-              style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]) }}
+              className="arcade-hover border-2 border-border px-3 py-2 font-pixel text-[10px] text-foreground hover:border-primary"
+              style={{ backgroundColor: cardTint(COLORS[i % COLORS.length]), '--glow': COLORS[i % COLORS.length] } as React.CSSProperties}
             >
               {y}
             </button>
