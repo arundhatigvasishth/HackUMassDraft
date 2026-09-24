@@ -11,10 +11,11 @@ const STRIP = [
 export function Footer() {
   const loop = [...STRIP, ...STRIP, ...STRIP, ...STRIP]
   return (
-    <footer className="border-t-2 border-primary bg-[#080808]">
+    <footer data-stage="footer" className="bg-[#05010f]">
+      <div className="rainbow-stripe" aria-hidden="true" />
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-3">
         <div>
-          <p className="font-pixel text-sm text-foreground text-glow">HACKUMASS XV</p>
+          <p className="font-pixel text-sm text-arcade-yellow text-glow">HACKUMASS XV</p>
           <p className="mt-4 font-sans text-xl leading-relaxed text-foreground/80">
             Western Mass&apos; largest collegiate hackathon. Insert coin. Hack the
             system.
@@ -27,7 +28,7 @@ export function Footer() {
               <a
                 key={n}
                 href={`#${n.toLowerCase()}`}
-                className="font-pixel text-[10px] text-foreground hover:text-[#bd0000] hover:text-glow"
+                className="font-pixel text-[10px] text-foreground hover:text-arcade-yellow hover:text-glow"
               >
                 {n}
               </a>
@@ -37,7 +38,7 @@ export function Footer() {
         </div>
 
         <div className="md:text-right">
-          <p className="font-pixel text-[9px] text-muted-foreground">CONTACT</p>
+          <p className="font-pixel text-[9px] text-arcade-cyan">CONTACT</p>
           <p className="mt-4 font-sans text-xl text-[color:var(--terminal)] text-glow-green">
             &gt; team@hackumass.org
             <span className="blink ml-1" aria-hidden="true">
@@ -47,7 +48,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="w-full overflow-hidden border-t-2 border-black bg-primary py-3">
+      <div className="w-full overflow-hidden border-t-4 border-black bg-primary py-3">
         <div className="ticker-track-slow">
           {loop.map((item, i) => (
             <span

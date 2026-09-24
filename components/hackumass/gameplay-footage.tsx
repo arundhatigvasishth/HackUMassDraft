@@ -16,11 +16,11 @@ const COLORS = rotateColors(2)
 export function GameplayFootage() {
   const loop = [...PHOTOS, ...PHOTOS]
   return (
-    <section className="relative overflow-hidden py-20">
+    <section data-stage="footage" className="relative overflow-hidden py-20">
       <SectionGlow colors={COLORS} />
       <div className="relative mx-auto max-w-7xl px-4">
         <TerminalHeader command="LOAD PHOTOS.DAT" />
-        <p className="mb-6 font-pixel text-sm text-foreground text-glow">
+        <p className="mb-6 font-pixel text-sm arcade-title">
           &#9654; RECORDED GAMEPLAY FOOTAGE
         </p>
 

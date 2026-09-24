@@ -7,11 +7,11 @@ export function ControlPanel({ className = 'h-auto w-24' }: { className?: string
       shapeRendering="crispEdges"
     >
       {/* base plate */}
-      <rect x="0" y="76" width="160" height="18" fill="#1c1c1c" />
-      <rect x="0" y="94" width="160" height="4" fill="#0a0a0a" />
+      <rect x="0" y="76" width="160" height="18" fill="#2a1760" />
+      <rect x="0" y="94" width="160" height="4" fill="#000" />
 
       {/* joystick shaft */}
-      <rect x="38" y="46" width="8" height="32" fill="#3a3a3a" />
+      <rect x="38" y="46" width="8" height="32" fill="#6b6b80" />
 
       {/* joystick ball-top, stacked pixel rows */}
       <rect x="30" y="18" width="24" height="6" fill="var(--primary)" />
